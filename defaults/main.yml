@@ -9,7 +9,7 @@ tower_pwd: p@ssw0rd
 tower_repos:
   - rhel-7-server-rpms
   - rhel-7-server-extras-rpms
-  - rhel-7-server-ansible-2.7-rpms
+  - rhel-7-server-ansible-2.8-rpms
 
 # provision on OpenStack
 os_instance_name: "{{ tower_hostname }}.{{ domain }}"

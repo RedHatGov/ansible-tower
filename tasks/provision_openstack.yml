@@ -12,7 +12,7 @@
   include_role:
     name: openstack_instance
   vars:
-    os_instance_floating_ip: 192.168.1.80
+    os_instance_floating_ip: "{{ tower_public_ip }}"
     #os_instance_auto_ip: no
     os_instance_terminate_volume: yes
     os_instance_security_groups:
