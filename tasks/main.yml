@@ -11,10 +11,8 @@
   tags: prep
 
 - name: check sudoers
-  command: cat /etc/sudoers | grep requiretty
+  shell: cat /etc/sudoers | grep requiretty
   register: sudoers_output
-  failed_when: true
-  changed_when: false
   tags: prep
 
 - name: update packages
@@ -27,7 +25,7 @@
   tags: prep
 
 - name: check Kernel is the Latest
-  command: if [ $(uname -r) == $(rpm -q kernel | tail -n 1 | sed -e 's/kernel-//g') ] ; then echo no ; else echo reboot; fi
+  shell: if [ $(uname -r) == $(rpm -q kernel | tail -n 1 | sed -e 's/kernel-//g') ] ; then echo no ; else echo reboot; fi
   ignore_errors: true
   register: reboot_hint
   tags: prep
@@ -96,7 +94,7 @@
 
 - name: move the extracted directory
   become: true
-  command: ' mv /tmp/tower/ansible-tower-setup-* /tmp/tower/ansible'
+  shell: ' mv /tmp/tower/ansible-tower-setup-* /tmp/tower/ansible'
   tags: install
 
 - name: template out the tower inventory
@@ -111,5 +109,5 @@
 
 - name: Install tower
   become: true
-  command: /tmp/tower/ansible/setup.sh
+  shell: /tmp/tower/ansible/setup.sh
   tags: install
