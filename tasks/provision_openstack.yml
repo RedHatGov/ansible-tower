@@ -10,10 +10,10 @@
 - name: Create Tower instance
   tags: provision
   include_role:
-    name: openstack_instance
+    name: RedHatGov.openstack_instance
   vars:
     os_instance_floating_ip: "{{ tower_public_ip }}"
-    #os_instance_auto_ip: no
+    os_instance_auto_ip: no
     os_instance_terminate_volume: yes
     os_instance_security_groups:
       - name: ssh
@@ -33,16 +33,6 @@
             port_range_min: 443
             port_range_max: 443
             remote_ip_prefix: 0.0.0.0/0
-
-#- name: Assign floating IP to Tower
-#  tags: provision
-#  os_floating_ip:
-#    auth: "{{ os_auth }}"
-#    state: present
-#    server: "{{ tower_hostname }}.{{ domain }}"
-#    floating_ip_address: "{{ tower_public_ip }}"
-#    network: public
-#    wait: true
 
 - name: Wait for instance become ready to use
   tags: provision
